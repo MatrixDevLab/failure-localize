@@ -34,10 +34,14 @@ downstream retries or workflow errors.
 
 ```bash
 python3 failure_localize.py fixtures/truncated.json
+python3 failure_localize.py examples/normalized-trace.json
 ```
 
 The command prints stable JSON. Exit status is `0` for a localized or
 insufficient trace, and `2` for malformed input.
+
+The `examples/` trace shows a model response, a failed tool call, and a linked
+workflow retry in one normalized record.
 
 ## Input
 
@@ -71,4 +75,3 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 python3 -m py_compile failure_localize.py
 git diff --check
 ```
-
