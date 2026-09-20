@@ -19,11 +19,10 @@ systems: malformed or truncated tool calls are reported with too little context,
 retries can repeat the same mistake, and durable workflow engines may retry a
 deterministic validation error as if it were transient.
 
-- [LangGraph #7138](https://github.com/langchain-ai/langgraph/issues/7138)
-- [LangGraph #6574](https://github.com/langchain-ai/langgraph/issues/6574)
-- [Pydantic AI #5178](https://github.com/pydantic/pydantic-ai/issues/5178)
-- [Pydantic AI #6979](https://github.com/pydantic/pydantic-ai/issues/6979)
-- [OpenAI Agents #325](https://github.com/openai/openai-agents-python/issues/325)
+- [LangGraph #7417](https://github.com/langchain-ai/langgraph/issues/7417)
+- [Pydantic AI #8185](https://github.com/pydantic/pydantic-ai/issues/8185)
+- [Pydantic AI #7171](https://github.com/pydantic/pydantic-ai/issues/7171)
+- [OpenAI Agents #4827](https://github.com/openai/openai-agents-python/issues/4827)
 
 Those projects have framework-specific fixes and retry controls. This small
 artifact tests a narrower, cross-framework boundary: whether a normalized event
@@ -42,6 +41,12 @@ insufficient trace, and `2` for malformed input.
 
 The `examples/` trace shows a model response, a failed tool call, and a linked
 workflow retry in one normalized record.
+
+The paired `fixtures/captured-malformed.json` and
+`fixtures/summary-only-malformed.json` fixtures make the capture boundary
+explicit: a raw response with an explicit termination reason can be localized,
+while a fluent failure summary without that evidence remains `insufficient`.
+Unknown capture fields do not change classification.
 
 ## Input
 
