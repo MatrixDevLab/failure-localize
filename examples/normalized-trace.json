@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": "response-1",
+      "seq": 10,
+      "kind": "model_response",
+      "call_id": "call-42",
+      "finish_reason": "MALFORMED_FUNCTION_CALL"
+    },
+    {
+      "id": "workflow-1",
+      "seq": 20,
+      "kind": "workflow_error",
+      "call_id": "call-42",
+      "status": "failed",
+      "error": "tool arguments could not be decoded"
+    }
+  ]
+}
