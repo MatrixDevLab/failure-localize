@@ -1,0 +1,18 @@
+{
+  "events": [
+    {
+      "id": "model-1",
+      "seq": 1,
+      "kind": "model_response",
+      "call_id": "call-1",
+      "finish_reason": "length"
+    },
+    {
+      "id": "retry-1",
+      "seq": 2,
+      "kind": "retry",
+      "call_id": "call-1",
+      "status": "failed"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "events": [
+    {
+      "id": "tool-1",
+      "seq": 1,
+      "kind": "tool_result",
+      "status": "ok"
+    }
+  ]
+}

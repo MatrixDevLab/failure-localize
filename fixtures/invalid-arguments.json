@@ -1,0 +1,11 @@
+{
+  "events": [
+    {
+      "id": "tool-1",
+      "seq": 1,
+      "kind": "tool_call",
+      "call_id": "call-1",
+      "arguments_valid": false
+    }
+  ]
+}
