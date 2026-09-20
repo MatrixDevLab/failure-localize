@@ -6,6 +6,9 @@ from pathlib import Path
 import failure_localize
 
 
+ROOT = Path(__file__).resolve().parents[1]
+
+
 class FailureLocalizeTests(unittest.TestCase):
     def test_truncation_is_first_and_retry_is_cascade(self):
         trace = [
@@ -44,7 +47,21 @@ class FailureLocalizeTests(unittest.TestCase):
         ]
         self.assertEqual(failure_localize.localize(trace), failure_localize.localize(list(reversed(trace))))
 
+    def test_capture_boundary_does_not_treat_summary_as_evidence(self):
+        captured = failure_localize.load_trace(ROOT / "fixtures/captured-malformed.json")
+        summarized = failure_localize.load_trace(ROOT / "fixtures/summary-only-malformed.json")
+
+        captured_result = failure_localize.localize(captured)
+        summarized_result = failure_localize.localize(summarized)
+
+        self.assertEqual(captured_result["state"], "localized")
+        self.assertEqual(
+            captured_result["first_failure"]["category"], "truncated_tool_call"
+        )
+        self.assertEqual(captured_result["cascades"][0]["id"], "retry-1")
+        self.assertEqual(summarized_result["state"], "insufficient")
+        self.assertEqual(summarized_result["cascades"], [])
+
 
 if __name__ == "__main__":
     unittest.main()
-

@@ -1,0 +1,25 @@
+{
+  "events": [
+    {
+      "id": "model-1",
+      "seq": 1,
+      "kind": "model_response",
+      "call_id": "call-1",
+      "finish_reason": "MALFORMED_FUNCTION_CALL",
+      "capture": {
+        "raw_response": "{\"tool\":\"lookup\",\"arguments\":\"<fixture>\"}",
+        "request_fingerprint": "sha256:fixture-malformed-call",
+        "termination_class": "tool-contract",
+        "one_time_state": "none",
+        "landed_status": "not-landed"
+      }
+    },
+    {
+      "id": "retry-1",
+      "seq": 2,
+      "kind": "retry",
+      "call_id": "call-1",
+      "status": "failed"
+    }
+  ]
+}
